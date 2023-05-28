@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %}Edit your account{% endblock  %}
+
+{% block content %}
+
+<h1>Edit Your account</h1>
+<p>Please, edit your account with the correct data following</p>
+<!--when sending form with files we need to use multipart in the formm -->
+<form method='POST' enctype="multipart/form-data">
+    {{ user_form.as_p}}
+    {{ profile_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" Value="Save Changes" /></p>
+</form>
+{% endblock  %}

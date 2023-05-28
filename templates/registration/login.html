@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+{% if form.errors %}
+
+<p>
+    Your Password and username did not match
+    Please type correct passwword
+</p>
+{% else %}
+
+<p>
+    Kindly Login Here
+</p>
+{% endif %}
+<div class="login-form">
+    <form action="{% url 'login' %}" method="POST">
+        {{ form.as_p }}
+        {% csrf_token %}
+    
+        <p><input type="submit" value="Login"></p>
+    </form>
+    <p>
+        <a href="{% url 'password_reset' %}">Forget Your Password</a>
+    </p>
+    <p>
+        <a href="{% url 'register' %}">Create new account</a>
+    </p>
+</div>
+<div class="social">
+    <ul>
+        <li class="facebook">
+            <a href="{% url 'social:begin' 'facebook' %}">
+                Sign in with Facebook
+            </a>
+        </li>
+    </ul>
+    <ul>
+        <li class="twitter">
+            <a href="{% url 'social:begin' 'twitter' %}">
+                Sign in with Twitter
+            </a>
+        </li>
+    </ul>
+    <ul>
+        <li class="google">
+            <a href="{% url 'social:begin' 'google-oauth2' %}">
+                Sign in with Google
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+{% endblock  %}
